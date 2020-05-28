@@ -41,7 +41,6 @@
 			<img src="{{ asset('frontend/img/logo.png') }}" alt="">
 		</a>
 		<div class="header-right">
-			<a href="#" class="hr-btn">Help</a>
 			<span>|</span>
 			<div class="user-panel">
 				<a href="" class="login">Login</a>
