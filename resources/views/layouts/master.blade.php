@@ -50,7 +50,7 @@
 			<ul class="main-menu">
 				<li><a href="{{ url('/') }}">Home</a></li>
 				<li><a href="{{ url('/playlist') }}">Playlist</a></li>
-				<li><a href="{{ url('/blog') }}">News</a></li>
+				<li><a href="{{ url('/news') }}">News</a></li>
 				<li><a href="{{ url('/contact') }}">Contact</a></li>
 			</ul>
 		</header>
