@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PagesController@index');
-Route::get('/playlist', 'PagesController@playlist');
 Route::get('/news', 'PagesController@blog');
 Route::get('/contact', 'PagesController@contact');
+Route::resource('playlist', 'PlaylistController');
+Route::resource('artist', 'ArtistController');

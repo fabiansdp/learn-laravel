@@ -10,7 +10,7 @@
 			<div class="container">
 				<div class="category-links">
 					<a href="" class="active">All Playlist</a>
-					<a href="{{ url('/form-add-playlist') }}">Add Playlist</a>
+					<a href="{{ url('/playlist/create') }}">Add Playlist</a>
 				</div>
 			</div>
 			<div class="category-items">
@@ -62,27 +62,10 @@
 							<div class="song-info-box">
 								<img src="{{ asset('frontend/img/songs/1.jpg') }}" alt="">
 								<div class="song-info">
-									<h4>{{ $song->title }}</h4>
-									<p>{{ $song->artist }}</p>
+									<h4><a href="playlist/{{ $song->id }}">{{ $song->title }}</a></h4>
+									<p>{{ $song->artist->name }}</p>
 								</div>
 							</div>
-						</div>
-						
-						<div class="col-lg-2">
-							<div class="songs-links">
-								<form class="d-inline-flex" method="post" action="/edit">
-									@csrf
-									<!-- @method('put') -->
-									<button type="submit" class="btn btn-light">Edit</button>
-								</form>
-
-								<form class="d-inline-flex" method="post" action="/songs/{{ $song->id }}">
-									@csrf
-									@method('delete')
-									<input type="hidden" name="id" value="{{ $song->id }}">
-									<button type="submit" class="btn btn-light">Delete</button>
-								</form>
-							</div>												
 						</div>
 					</div>
 				</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-<title>SolMusic | Playlist</title>
+<title>SolMusic</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="SolMusic HTML Template">
 	<meta name="keywords" content="music, html">
@@ -37,7 +37,7 @@
 
 		<!-- Header section -->
 		<header class="header-section clearfix">
-			<a href="{{ url('index') }}" class="site-logo">
+			<a href="{{ url('/') }}" class="site-logo">
 				<img src="{{ asset('frontend/img/logo.png') }}" alt="">
 			</a>
 			<div class="header-right">
@@ -50,6 +50,7 @@
 			<ul class="main-menu">
 				<li><a href="{{ url('/') }}">Home</a></li>
 				<li><a href="{{ url('/playlist') }}">Playlist</a></li>
+				<li><a href="{{ url('/artist') }}">Artists</a></li>
 				<li><a href="{{ url('/news') }}">News</a></li>
 				<li><a href="{{ url('/contact') }}">Contact</a></li>
 			</ul>
