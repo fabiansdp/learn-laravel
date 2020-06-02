@@ -72,7 +72,7 @@ class PlaylistController extends Controller
      */
     public function show($id)
     {
-        $songs = Song::where('id',$id)->get();
+        $songs = Song::find($id);
         return view('playlist.show-playlist', compact('songs'));
     }
 

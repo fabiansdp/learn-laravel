@@ -4,7 +4,7 @@
     <div class="row justify-content-center my-5">
         <div class="col-lg-6">
             <h3 class="text-center mb-5">Add Playlist</h3>
-            <form action="/playlist" method="POST">
+            <form action="{{ route('playlist.store') }}" method="POST">
                 @csrf
                     <div class="form-group">
                         <label for="artistName">Artist Name</label>

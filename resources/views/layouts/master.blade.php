@@ -40,13 +40,34 @@
 			<a href="{{ url('/') }}" class="site-logo">
 				<img src="{{ asset('frontend/img/logo.png') }}" alt="">
 			</a>
-			<div class="header-right">
-				<span>|</span>
-				<div class="user-panel">
-					<a href="" class="login">Login</a>
-					<a href="" class="register">Create an account</a>
-				</div> 
-			</div>
+			@guest
+				<div class="header-right">
+					<div class="user-panel">
+						<a href="{{ route('login') }}" class="login">Login</a>
+						<span>|</span>
+						@if (Route::has('register'))
+							<a href="{{ route('register') }}" class="register">Create an account</a>
+						@endif
+					</div> 
+				</div>
+			@else
+				<li class="nav-item dropdown d-inline-flex">
+					<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+						{{ Auth::user()->name }} <span class="caret"></span>
+					</a>
+
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ route('logout') }}"
+							onclick="event.preventDefault();
+										 document.getElementById('logout-form').submit();">
+							{{ __('Logout') }}
+						</a>
+
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
+				</li>
+			@endguest
 			<ul class="main-menu">
 				<li><a href="{{ url('/') }}">Home</a></li>
 				<li><a href="{{ url('/playlist') }}">Playlist</a></li>

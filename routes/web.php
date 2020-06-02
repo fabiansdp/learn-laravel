@@ -18,3 +18,7 @@ Route::get('/news', 'PagesController@blog');
 Route::get('/contact', 'PagesController@contact');
 Route::resource('playlist', 'PlaylistController');
 Route::resource('artist', 'ArtistController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

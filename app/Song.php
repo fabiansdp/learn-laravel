@@ -10,6 +10,6 @@ class Song extends Model
     
     public function artist()
     {
-        return $this->belongsTo('App\Artist');
+        return $this->belongsTo(Artist::class);
     }
 }
