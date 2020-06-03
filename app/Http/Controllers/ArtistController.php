@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Artist;
+use App\Song;
 
 class ArtistController extends Controller
 {
@@ -67,7 +68,7 @@ class ArtistController extends Controller
      */
     public function show($id)
     {
-        $artist = Artist::where('id',$id)->get();
+        $artist = Artist::findOrFail($id);
         return view('artist.show-artist', compact('artist'));
     }
 
@@ -79,7 +80,7 @@ class ArtistController extends Controller
      */
     public function edit($id)
     {
-        $artist = Artist::find($id);
+        $artist = Artist::findOrFail($id);
         return view('artist.edit-artist', compact('artist'));
     }
 
@@ -99,14 +100,16 @@ class ArtistController extends Controller
         ]);
 
         try {
-            $artist = Artist::where('id', $id)->update([
+            $artist = Artist::findOrFail($id)->update([
                 'name' => $request->name,
                 'gender' => $request->gender,
                 'age' => $request->age,
                 'updated_at' => now()
             ]);
 
-            return redirect('/artist');
+            $artist = Artist::findOrFail($id);
+
+            return view('artist.show-artist', compact('artist'));
 
         } catch (\Throwable $e) {
             report($e);
@@ -123,7 +126,8 @@ class ArtistController extends Controller
      */
     public function destroy($id)
     {
-        $artist = Artist::find($id);
+        $artist = Artist::findOrFail($id);
+        $songs = Song::with(['artist'])->findOrFail($id)->delete();
         $artist->delete();
 
         return redirect('artist');

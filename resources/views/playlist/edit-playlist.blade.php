@@ -9,9 +9,9 @@
                 @method('put')
                     <div class="form-group">
                         <label for="artistName">Artist Name</label>
-                        <select class="custom-select mr-sm-2" name="artistName" id="artistName" required="require">
+                        <select class="custom-select mr-sm-2" name="artistId" id="artistId" required="require">
                             @foreach ($artists as $artist)
-                                <option value="{{ $artist->name }}" selected>{{ $artist->name }}</option>
+                                <option value="{{ $artist->id }}" selected>{{ $artist->name }}</option>
                             @endforeach
                         </select>
                     </div>

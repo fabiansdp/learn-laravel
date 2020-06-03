@@ -40,7 +40,7 @@ class PlaylistController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'artistName' => 'required',
+            'artistId' => 'required',
             'songTitle' => 'required',
             'optionGenre' => 'required',
             'songYear' => 'required|integer'
@@ -48,12 +48,12 @@ class PlaylistController extends Controller
 
         try {
             $song = new Song;
-            $artist_id= Artist::where('name',$request->artistName)->pluck('id');
+            $artist = Artist::findOrFail($request->artistId);
 
-            $song->artist_id = $artist_id[0];
             $song->title = $request->songTitle;
             $song->genre = $request->optionGenre;
             $song->year = $request->songYear;
+            $song->artist()->associate($artist);
             $song->save();
 
             return redirect('/playlist');
@@ -72,8 +72,8 @@ class PlaylistController extends Controller
      */
     public function show($id)
     {
-        $songs = Song::find($id);
-        return view('playlist.show-playlist', compact('songs'));
+        $song = Song::findOrFail($id);
+        return view('playlist.show-playlist', compact('song'));
     }
 
     /**
@@ -99,21 +99,20 @@ class PlaylistController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'artistName' => 'required',
+            'artistId' => 'required',
             'songTitle' => 'required',
             'optionGenre' => 'required',
             'songYear' => 'required|integer'
         ]);
 
         try {
-            $artist_id= Artist::where('name',$request->artistName)->pluck('id');
-            $songDetail = Song::where('id', $id)->update([
-                'artist_id' => $artist_id[0],
-                'title' => $request->songTitle,
-                'genre' => $request->optionGenre,
-                'year' => $request->songYear,
-                'updated_at' => now()
-            ]);
+            $artist = Artist::findOrFail($request->artistId);
+            $song = Song::findOrFail($id);
+            $song->title = $request->songTitle;
+            $song->genre = $request->optionGenre;
+            $song->year = $request->songYear;
+            $song->artist()->associate($artist);
+            $song->save();
             
             return redirect('/playlist');
 
@@ -132,7 +131,7 @@ class PlaylistController extends Controller
      */
     public function destroy($id)
     {
-        $song = Song::find($id);
+        $song = Song::findOrFail($id);
         $song->delete();
 
         return redirect('/playlist');
