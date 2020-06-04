@@ -51,29 +51,32 @@
 					</div> 
 				</div>
 			@else
-				<li class="nav-item dropdown d-inline-flex">
-					<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-						{{ Auth::user()->name }} <span class="caret"></span>
-					</a>
-
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="{{ route('logout') }}"
-							onclick="event.preventDefault();
-										 document.getElementById('logout-form').submit();">
-							{{ __('Logout') }}
+				<div class="header-right">
+					<div class="user-panel">
+						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+							{{ Auth::user()->name }} <span class="caret"></span>
 						</a>
 
-						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-							@csrf
-						</form>
-				</li>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{ route('logout') }}"
+								onclick="event.preventDefault();
+											document.getElementById('logout-form').submit();">
+								{{ __('Logout') }}
+							</a>
+
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
+					</div>
+				</div>
 			@endguest
 			<ul class="main-menu">
 				<li><a href="{{ url('/') }}">Home</a></li>
-				<li><a href="{{ url('/playlist') }}">Playlist</a></li>
+				<li><a href="{{ url('/song') }}">Songs</a></li>
 				<li><a href="{{ url('/artist') }}">Artists</a></li>
 				<li><a href="{{ url('/news') }}">News</a></li>
 				<li><a href="{{ url('/contact') }}">Contact</a></li>
+				<li><a href="{{ url('/playlist') }}">Playlist</a></li>
 			</ul>
 		</header>
 		<!-- Header section end -->

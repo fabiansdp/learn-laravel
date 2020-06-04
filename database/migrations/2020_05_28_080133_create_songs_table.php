@@ -21,7 +21,6 @@ class CreateSongsTable extends Migration
             $table->integer('year');
             $table->timestamps();
         });
-
     }
 
     /**

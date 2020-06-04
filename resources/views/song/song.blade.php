@@ -5,12 +5,12 @@
 	<section class="category-section spad">
 		<div class="container-fluid">
 			<div class="section-title">
-				<h2>All Playlist</h2>
+				<h2>All Songs</h2>
 			</div>
 			<div class="container">
 				<div class="category-links">
-					<a href="" class="active">All Playlist</a>
-					<a href="{{ url('/playlist/create') }}">Add Playlist</a>
+					<a href="" class="active">All Songs</a>
+					<a href="{{ url('/song/create') }}">Add Song</a>
 				</div>
 			</div>
 			<div class="category-items">
@@ -62,7 +62,7 @@
 							<div class="song-info-box">
 								<img src="{{ asset('frontend/img/songs/1.jpg') }}" alt="">
 								<div class="song-info">
-									<h4><a href="playlist/{{ $song->id }}">{{ $song->title }}</a></h4>
+									<h4><a href="song/{{ $song->id }}">{{ $song->title }}</a></h4>
 									<p>{{ $song->artist->name }}</p>
 								</div>
 							</div>

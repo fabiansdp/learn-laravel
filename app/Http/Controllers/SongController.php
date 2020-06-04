@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Song;
 use App\Artist;
 
-class PlaylistController extends Controller
+class SongController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class PlaylistController extends Controller
     public function index()
     {
         $songs = Song::all();
-        return view('playlist.playlist', compact('songs'));
+        return view('song.song', compact('songs'));
     }
 
     /**
@@ -28,7 +28,7 @@ class PlaylistController extends Controller
     {
         $songs = Song::all();
         $artists = Artist::all();
-        return view('playlist.add-playlist',compact('songs','artists'));
+        return view('song.add-song', compact('songs', 'artists'));
     }
 
     /**
@@ -47,7 +47,7 @@ class PlaylistController extends Controller
         ]);
 
         try {
-            $song = new Song;
+            $song = new Song();
             $artist = Artist::findOrFail($request->artistId);
 
             $song->title = $request->songTitle;
@@ -56,8 +56,7 @@ class PlaylistController extends Controller
             $song->artist()->associate($artist);
             $song->save();
 
-            return redirect('/playlist');
-
+            return redirect('/song');
         } catch (\Throwable $e) {
             report($e);
             return "Gagal";
@@ -73,7 +72,7 @@ class PlaylistController extends Controller
     public function show($id)
     {
         $song = Song::findOrFail($id);
-        return view('playlist.show-playlist', compact('song'));
+        return view('song.show-song', compact('song'));
     }
 
     /**
@@ -86,7 +85,7 @@ class PlaylistController extends Controller
     {
         $songs = Song::find($id);
         $artists = Artist::all();
-        return view('playlist.edit-playlist',compact('songs', 'artists'));
+        return view('song.edit-song', compact('songs', 'artists'));
     }
 
     /**
@@ -114,13 +113,11 @@ class PlaylistController extends Controller
             $song->artist()->associate($artist);
             $song->save();
             
-            return redirect('/playlist');
-
+            return redirect('/song');
         } catch (\Throwable $e) {
             report($e);
             return "Gagal";
         }
-
     }
 
     /**
@@ -134,6 +131,6 @@ class PlaylistController extends Controller
         $song = Song::findOrFail($id);
         $song->delete();
 
-        return redirect('/playlist');
+        return redirect('/song');
     }
 }

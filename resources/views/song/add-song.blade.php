@@ -3,42 +3,41 @@
 @section('content')
     <div class="row justify-content-center my-5">
         <div class="col-lg-6">
-            <h3 class="text-center mb-5">Edit Playlist</h3>
-            <form action="/playlist/{{ $songs->id }}" method="POST">
+            <h3 class="text-center mb-5">Add Song</h3>
+            <form action="{{ route('song.store') }}" method="POST">
                 @csrf
-                @method('put')
                     <div class="form-group">
                         <label for="artistName">Artist Name</label>
                         <select class="custom-select mr-sm-2" name="artistId" id="artistId" required="require">
                             @foreach ($artists as $artist)
-                                <option value="{{ $artist->id }}" selected>{{ $artist->name }}</option>
+                                <option value="{{ $artist->id }}">{{ $artist->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="songTitle">Song Title</label>
-                        <input type="text" class="form-control" id="songTitle" name="songTitle" value="{{ $songs->title }}" required="require">
+                        <input type="text" class="form-control" id="songTitle" name="songTitle" required="require">
                     </div>
 
                     <div class="form-group">
                         <label for="songGenre">Song Genre</label>
                         <select class="custom-select mr-sm-2" name="optionGenre" required="require">
-                            <option value="Pop" @if($songs->genre === 'Pop') selected @endif>Pop</option>
-                            <option value="Rock"@if($songs->genre === 'Rock') selected @endif>Rock</option>
-                            <option value="Jazz"@if($songs->genre === 'Jazz') selected @endif>Jazz</option>
-                            <option value="K-Pop"@if($songs->genre === 'K-Pop') selected @endif>K-Pop</option>
-                            <option value="Blues"@if($songs->genre === 'Blues') selected @endif>Blues</option>
+                            <option value="Pop">Pop</option>
+                            <option value="Rock">Rock</option>
+                            <option value="Jazz">Jazz</option>
+                            <option value="K-Pop">K-Pop</option>
+                            <option value="Blues">Blues</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="songYear">Song Year</label>
-                        <input type="text" class="form-control" id="songYear" name="songYear" value="{{ $songs->year }}" required="require">
+                        <input type="text" class="form-control" id="songYear" name="songYear" required="require">
                     </div>
 
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Update Playlist</button>
+                        <button type="submit" class="btn btn-primary">Add Song</button>
                     </div>
             </form>
         </div>

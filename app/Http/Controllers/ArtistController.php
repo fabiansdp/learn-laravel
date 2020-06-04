@@ -27,7 +27,7 @@ class ArtistController extends Controller
     public function create()
     {
         $artists = Artist::all();
-        return view('artist.create-artist',compact('artists'));
+        return view('artist.create-artist', compact('artists'));
     }
 
     /**
@@ -45,7 +45,7 @@ class ArtistController extends Controller
         ]);
 
         try {
-            $artist = new Artist;
+            $artist = new Artist();
 
             $artist->name = $request->name;
             $artist->gender = $request->gender;
@@ -53,8 +53,7 @@ class ArtistController extends Controller
             $artist->save();
 
             return redirect('/artist');
-
-        } catch(\Throwable $e) {
+        } catch (\Throwable $e) {
             report($e);
             return 'Gagal';
         }
@@ -110,12 +109,10 @@ class ArtistController extends Controller
             $artist = Artist::findOrFail($id);
 
             return view('artist.show-artist', compact('artist'));
-
         } catch (\Throwable $e) {
             report($e);
             return 'Gagal';
         }
-
     }
 
     /**

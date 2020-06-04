@@ -63,10 +63,10 @@
             "@php artisan key:generate --ansi"
         ],
         "lint": [
-            "@php vendor/bin/phpcs --extensions=php --standard=PSR12 app/ config/ routes/ tests/"
+            "@php vendor/bin/phpcs --extensions=php --standard=PSR2 app/ config/ routes/ tests/"
         ],
         "lint-fix": [
-            "@php vendor/bin/phpcbf --extensions=php --standard=PSR12 app/ config/ routes/ tests/"
+            "@php vendor/bin/phpcbf --extensions=php --standard=PSR2 app/ config/ routes/ tests/"
         ]
     }
 }
